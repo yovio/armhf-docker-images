@@ -5,6 +5,8 @@ language: bash
 script:
 # prepare qemu
 - docker run --rm --privileged multiarch/qemu-user-static:register --reset
+# Call build Node
+- cd node && ./build-node.sh && cd $TRAVIS_BUILD_DIR
 # Call build alpine
 - cd alpine && ./build-alpine.sh && cd $TRAVIS_BUILD_DIR
 # Call build mosquitto
