@@ -1,4 +1,4 @@
-FROM armhf/alpine:3.5
+FROM yovio/armhf-alpine:latest
 MAINTAINER Yovi Oktofianus <yovio@hotmail.com>
 
 LABEL Description="Eclipse Mosquitto MQTT Broker for armhf."
