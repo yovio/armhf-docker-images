@@ -6,4 +6,6 @@ script:
 # prepare qemu
 - docker run --rm --privileged multiarch/qemu-user-static:register --reset
 # Call build alpine
-- cd alpine && ./build-alpine.sh
+- cd alpine && ./build-alpine.sh && cd $TRAVIS_BUILD_DIR
+# Call build mosquitto
+- cd mosquitto && ./build-mosquitto.sh && cd $TRAVIS_BUILD_DIR
