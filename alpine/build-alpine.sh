@@ -4,7 +4,7 @@ curl -L -o qemu-arm-static.tar.gz https://github.com/multiarch/qemu-user-static/
 tar xzf qemu-arm-static.tar.gz &&
 popd
 # build image
-docker build -t yovio/armhf-alpine:build .
+docker build -t yovio/armhf-alpine:build --build-arg ALPINE_TAG=$ALPINE_TAG .
 # test image
 docker run yovio/armhf-alpine:build uname -a
 # push image
