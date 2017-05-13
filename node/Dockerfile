@@ -1,4 +1,4 @@
-FROM armhf/alpine:latest
+FROM yovio/armhf-alpine:latest
 MAINTAINER Yovi Oktofianus <yovio@hotmail.com>
 
 LABEL Description="NodeJs for armhf."
