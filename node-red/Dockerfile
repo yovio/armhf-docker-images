@@ -12,9 +12,7 @@ RUN mkdir -p /usr/src/node-red \
 WORKDIR /usr/src/node-red
 USER node-red
 
-# package.json contains Node-RED NPM module and node dependencies
-COPY package.json /usr/src/node-red/
-RUN npm install
+RUN npm install --unsafe-perm node-red
 
 # User configuration directory volume
 EXPOSE 1880
