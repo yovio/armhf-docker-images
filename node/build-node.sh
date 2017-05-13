@@ -14,9 +14,9 @@ docker run yovio/armhf-node:build uname -a
 if [ "$TRAVIS_BRANCH" == "master" ]; then
   docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
   TAG=$(grep "FROM " Dockerfile | sed 's/.*://')
-  docker tag yovio/armhf-node:build yovio/armhf-node:$TAG
+  docker tag yovio/armhf-node:build yovio/armhf-node:6.9.5
   docker tag yovio/armhf-node:build yovio/armhf-node:latest
-  docker push yovio/armhf-node:$TAG
+  docker push yovio/armhf-node:6.9.5
   docker push yovio/armhf-node:latest
 fi
 rm -Rf tmp
