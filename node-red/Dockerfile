@@ -1,4 +1,4 @@
-FROM yovio/armhf-node
+FROM yovio/armhf-node:latest
 
 # Home directory for Node-RED application source code.
 RUN mkdir -p /usr/src/node-red \
