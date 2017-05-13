@@ -20,5 +20,8 @@ script:
 # Call build Node
 - cd node && ./build-node.sh && cd $TRAVIS_BUILD_DIR
 
+# Call build node-red
+- cd node-red && ./build-node-red.sh && cd $TRAVIS_BUILD_DIR
+
 # Call build mosquitto
 - cd mosquitto && ./build-mosquitto.sh && cd $TRAVIS_BUILD_DIR
