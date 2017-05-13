@@ -11,9 +11,9 @@ docker run yovio/armhf-alpine:build uname -a
 if [ "$TRAVIS_BRANCH" == "master" ]; then
   docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
   TAG=$(grep "FROM " Dockerfile | sed 's/.*://')
-  docker tag yovio/armhf-alpine:build yovio/armhf-alpine:$TAG
+  docker tag yovio/armhf-alpine:build yovio/armhf-alpine:$ALPINE_TAG
   docker tag yovio/armhf-alpine:build yovio/armhf-alpine:latest
-  docker push yovio/armhf-alpine:$TAG
+  docker push yovio/armhf-alpine:$ALPINE_TAG
   docker push yovio/armhf-alpine:latest
 fi
 rm -Rf tmp
