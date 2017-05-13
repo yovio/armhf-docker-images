@@ -1,6 +1,3 @@
-if [$BUILD_NODE == 'true']
-then
- 
 mkdir tmp
 pushd tmp &&
 curl -L -o qemu-arm-static.tar.gz https://github.com/multiarch/qemu-user-static/releases/download/v2.6.0/qemu-arm-static.tar.gz &&
@@ -20,7 +17,3 @@ if [ "$TRAVIS_BRANCH" == "master" ]; then
   docker push yovio/armhf-node:latest
 fi
 rm -Rf tmp
-
-fi
-
-exit 0;
