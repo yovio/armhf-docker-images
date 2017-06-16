@@ -1,4 +1,4 @@
-VER=${MOSQUITTO_VER:-1.4.12-r0}
+MOSQUITTO_VER=1.4.12-r0
 
 mkdir tmp
 pushd tmp &&
@@ -6,16 +6,16 @@ curl -L -o qemu-arm-static.tar.gz https://github.com/multiarch/qemu-user-static/
 tar xzf qemu-arm-static.tar.gz &&
 popd
 # build image
-docker build -t yovio/armhf-mosquitto:build --build-arg MOSQUITTO_VER=$VER .
+docker build -t yovio/armhf-mosquitto:build --build-arg MOSQUITTO_VER=$MOSQUITTO_VER .
 # test image
 docker run yovio/armhf-mosquitto:build uname -a
 # push image
 if [ "$TRAVIS_BRANCH" == "master" ]; then
   docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
   TAG=$(grep "FROM " Dockerfile | sed 's/.*://')
-  docker tag yovio/armhf-mosquitto:build yovio/armhf-mosquitto:$VER
+  docker tag yovio/armhf-mosquitto:build yovio/armhf-mosquitto:$MOSQUITTO_VER
   docker tag yovio/armhf-mosquitto:build yovio/armhf-mosquitto:latest
-  docker push yovio/armhf-mosquitto:$VER
+  docker push yovio/armhf-mosquitto:$MOSQUITTO_VER
   docker push yovio/armhf-mosquitto:latest
 fi
 rm -Rf tmp
