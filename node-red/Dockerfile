@@ -7,7 +7,8 @@ RUN mkdir -p /usr/src/node-red \
 	# Add node-red user so we aren't running as root.
 	&& adduser -D -h /usr/src/node-red -H node-red \
     && chown -R node-red:node-red /data \
-    && chown -R node-red:node-red /usr/src/node-red
+    && chown -R node-red:node-red /usr/src/node-red \
+    && chmod u+s /bin/ping
 
 WORKDIR /usr/src/node-red
 USER node-red
