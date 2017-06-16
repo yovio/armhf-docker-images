@@ -6,7 +6,7 @@ MAINTAINER Yovi Oktofianus <yovio@hotmail.com>
 
 LABEL Description="Eclipse Mosquitto MQTT Broker for armhf."
 
-RUN echo Mosquitto version: $MOSQUITTO_VER \
+RUN echo Mosquitto version: $MOSQUITTO_VER && \
     apk --no-cache add mosquitto=$MOSQUITTO_VER && \
     mkdir -p /mosquitto/config /mosquitto/data /mosquitto/log && \
     cp /etc/mosquitto/mosquitto.conf /mosquitto/config && \
