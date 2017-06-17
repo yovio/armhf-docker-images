@@ -7,6 +7,7 @@ ARG CURA_ENGINE_VERSION=15.04.6
 LABEL Description="Octoprint for armhf."
 
 RUN set -xe \
+	&& echo "Octoprint version $OCTOPRINT_VERSION" \
 	&& echo "Setup Temporary packages for compilation" \
 	&& export PKGS='build-essential subversion libjpeg-dev zlib1g-dev libv4l-dev wget unzip git' \
 	&& echo "Installing Dependencies" \
