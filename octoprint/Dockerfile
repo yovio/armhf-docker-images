@@ -37,7 +37,7 @@ RUN echo "Installing CuraEngine" \
 	&& mv -f ./build /CuraEngine/ \
 	&& cd ..
 	
-RUN echo "Installing OctoPrint"
+RUN echo "Installing OctoPrint" \
 	&& tar -zxf $OCTOPRINT_VERSION.tar.gz \
 	&& mv -f OctoPrint-$OCTOPRINT_VERSION /octoprint/ \
 	&& cd /octoprint/ \
