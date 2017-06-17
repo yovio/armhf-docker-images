@@ -13,9 +13,9 @@ docker run yovio/armhf-mosquitto:build uname -a
 if [ "$TRAVIS_BRANCH" == "master" ]; then
   docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
   TAG=$(grep "FROM " Dockerfile | sed 's/.*://')
-  docker tag yovio/armhf-mosquitto:build yovio/armhf-mosquitto:$MQT_VER
-  docker tag yovio/armhf-mosquitto:build yovio/armhf-mosquitto:latest
-  docker push yovio/armhf-mosquitto:$MQT_VER
-  docker push yovio/armhf-mosquitto:latest
+  docker tag yovio/armhf-mosquitto:build yovio/armhf-mosquitto:alpine-$MQT_VER
+  docker tag yovio/armhf-mosquitto:build yovio/armhf-mosquitto:alpine
+  docker push yovio/armhf-mosquitto:alpine-$MQT_VER
+  docker push yovio/armhf-mosquitto:alpine
 fi
 rm -Rf tmp

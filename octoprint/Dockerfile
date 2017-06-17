@@ -1,9 +1,10 @@
 FROM armhf/python:2.7-slim
 MAINTAINER Yovi Oktofianus <yovio@hotmail.com>
 
+ARG OCTOPRINT_VERSION=1.3.2
+ARG CURA_ENGINE_VERSION=15.04.6
+
 LABEL Description="Octoprint for armhf."
-ENV OCTOPRINT_VERSION=1.3.2
-ENV CURA_ENGINE_VERSION=15.04.6
 
 RUN set -xe \
 	&& echo "Setup Temporary packages for compilation" \
@@ -14,8 +15,8 @@ RUN set -xe \
 	&& apt-get install -y ${PKGS} --no-install-recommends \
 	&& echo "Download OctoPrint/CuraEngine/mjpg-streamer" \
 	&& cd /tmp/ \
-	&& wget https://github.com/foosel/OctoPrint/archive/${OCTOPRINT_VERSION}.tar.gz \
-	&& wget https://github.com/Ultimaker/CuraEngine/archive/${CURA_ENGINE_VERSION}.tar.gz \
+	&& wget https://github.com/foosel/OctoPrint/archive/$OCTOPRINT_VERSION.tar.gz \
+	&& wget https://github.com/Ultimaker/CuraEngine/archive/$CURA_ENGINE_VERSION.tar.gz \
 	&& wget http://sourceforge.net/code-snapshots/svn/m/mj/mjpg-streamer/code/mjpg-streamer-code-182.zip \
 	&& echo "Installing mjpg-streamer" \
 	&& unzip mjpg-streamer-code-182.zip \
@@ -24,15 +25,15 @@ RUN set -xe \
 	&& make install \
 	&& cd ../.. \
 	&& echo "Installing CuraEngine" \
-	&& tar -zxf ${CURA_ENGINE_VERSION}.tar.gz \
-	&& cd CuraEngine-${CURA_ENGINE_VERSION} \
+	&& tar -zxf $CURA_ENGINE_VERSION.tar.gz \
+	&& cd CuraEngine-$CURA_ENGINE_VERSION \
 	&& mkdir build \
 	&& make \
 	&& mv -f ./build /CuraEngine/ \
 	&& cd .. \
 	&& echo "Installing OctoPrint" \
-	&& tar -zxf ${OCTOPRINT_VERSION}.tar.gz \
-	&& mv -f OctoPrint-${OCTOPRINT_VERSION} /octoprint/ \
+	&& tar -zxf $OCTOPRINT_VERSION.tar.gz \
+	&& mv -f OctoPrint-$OCTOPRINT_VERSION /octoprint/ \
 	&& cd /octoprint/ \
 	&& echo "Install OctoPrint requirements" \
 	&& pip install -r requirements.txt \
