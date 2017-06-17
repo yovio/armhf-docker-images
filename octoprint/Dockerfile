@@ -13,35 +13,40 @@ RUN set -xe \
 	&& echo "Installing Dependencies" \
 	&& apt-get update \
 	&& apt-get install -y libprotobuf9 libav-tools avrdude libjpeg62-turbo curl imagemagick psmisc --no-install-recommends \
-	&& apt-get install -y ${PKGS} --no-install-recommends \
-	&& echo "Download OctoPrint/CuraEngine/mjpg-streamer" \
+	&& apt-get install -y ${PKGS} --no-install-recommends
+	
+RUN echo "Download OctoPrint/CuraEngine/mjpg-streamer" \
 	&& mkdir /tmp \
 	&& cd /tmp/ \
 	&& wget https://github.com/foosel/OctoPrint/archive/$OCTOPRINT_VERSION.tar.gz \
 	&& wget https://github.com/Ultimaker/CuraEngine/archive/$CURA_ENGINE_VERSION.tar.gz \
-	&& wget http://sourceforge.net/code-snapshots/svn/m/mj/mjpg-streamer/code/mjpg-streamer-code-182.zip \
-	&& echo "Installing mjpg-streamer" \
+	&& wget http://sourceforge.net/code-snapshots/svn/m/mj/mjpg-streamer/code/mjpg-streamer-code-182.zip
+	
+RUN echo "Installing mjpg-streamer" \
 	&& unzip mjpg-streamer-code-182.zip \
 	&& cd mjpg-streamer-code-182/mjpg-streamer \
 	&& make \
 	&& make install \
-	&& cd ../.. \
-	&& echo "Installing CuraEngine" \
+	&& cd ../..
+	
+RUN echo "Installing CuraEngine" \
 	&& tar -zxf $CURA_ENGINE_VERSION.tar.gz \
 	&& cd CuraEngine-$CURA_ENGINE_VERSION \
 	&& mkdir build \
 	&& make \
 	&& mv -f ./build /CuraEngine/ \
-	&& cd .. \
-	&& echo "Installing OctoPrint" \
+	&& cd ..
+	
+RUN echo "Installing OctoPrint"
 	&& tar -zxf $OCTOPRINT_VERSION.tar.gz \
 	&& mv -f OctoPrint-$OCTOPRINT_VERSION /octoprint/ \
 	&& cd /octoprint/ \
 	&& echo "Install OctoPrint requirements" \
 	&& pip install -r requirements.txt \
 	&& pip install pillow \
-	&& python setup.py install \
-	&& echo "Cleaning Temporary Packages + Installation leftovers" \
+	&& python setup.py install
+	
+RUN echo "Cleaning Temporary Packages + Installation leftovers" \
 	&& apt-get purge -y --auto-remove ${PKGS} \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /tmp/* /var/tmp/*
