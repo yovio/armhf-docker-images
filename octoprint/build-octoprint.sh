@@ -1,3 +1,5 @@
+#!/bin/bash
+
 APP_VER=1.3.4
 
 mkdir tmp
