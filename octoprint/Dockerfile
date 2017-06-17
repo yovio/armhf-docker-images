@@ -15,6 +15,7 @@ RUN set -xe \
 	&& apt-get install -y libprotobuf9 libav-tools avrdude libjpeg62-turbo curl imagemagick psmisc --no-install-recommends \
 	&& apt-get install -y ${PKGS} --no-install-recommends \
 	&& echo "Download OctoPrint/CuraEngine/mjpg-streamer" \
+	&& mkdir /tmp \
 	&& cd /tmp/ \
 	&& wget https://github.com/foosel/OctoPrint/archive/$OCTOPRINT_VERSION.tar.gz \
 	&& wget https://github.com/Ultimaker/CuraEngine/archive/$CURA_ENGINE_VERSION.tar.gz \
