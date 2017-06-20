@@ -5,10 +5,9 @@ RUN mkdir -p /usr/src/node-red \
 	# User data directory, contains flows, config and nodes.
 	&& mkdir /data \
 	# Add node-red user so we aren't running as root.
-	&& adduser -D -h /usr/src/node-red -H node-red \
+	&& useradd --home-dir /usr/src/node-red --no-create-home node-red \
     && chown -R node-red:node-red /data \
-    && chown -R node-red:node-red /usr/src/node-red \
-    && chmod u+s /bin/ping
+    && chown -R node-red:node-red /usr/src/node-red    
 
 WORKDIR /usr/src/node-red
 USER node-red
