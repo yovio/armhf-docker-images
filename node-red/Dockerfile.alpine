@@ -8,7 +8,10 @@ RUN mkdir -p /usr/src/node-red \
 	&& adduser -D -h /usr/src/node-red -H node-red \
     && chown -R node-red:node-red /data \
     && chown -R node-red:node-red /usr/src/node-red \
-    && chmod u+s /bin/ping
+    && chmod u+s /bin/ping \
+    && apk add --update tzdata	
+
+ENV TZ=Asia/Singapore
 
 WORKDIR /usr/src/node-red
 USER node-red
